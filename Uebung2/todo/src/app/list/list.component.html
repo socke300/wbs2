@@ -1,0 +1,27 @@
+<div class="container">
+  <h5>{{title}}</h5>
+
+  <div *ngFor="let item of givenList; let i = index" class="m-2">
+    <app-todo-item  [todo]="item" (doneEvent)="dataService.done(i)" (deleteEvent)="dataService.delete(i)" (undoneEvent)="dataService.undone(i)"></app-todo-item>
+  </div>
+
+  <!-- <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Date</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of todoList; let i = index">
+      <td>{{i}}</td>
+      <td>{{item.title}}</td>
+      <td>{{item.date}}</td>
+      <td class="text-right">
+        <button type="button" class="btn btn-secondary" (click)="done(i)">Done</button>
+      </td>
+    </tr>
+    </tbody>
+  </table> -->

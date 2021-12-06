@@ -1,0 +1,9 @@
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{todo.title}}</h5>
+    <p class="card-text">{{todo.date | date}}</p>
+    <a class="btn btn-primary btn-dark" *ngIf="!todo.done" (click)="doneEvent.emit()">Done</a>
+    <a class="btn btn-primary btn-light" *ngIf="todo.done" (click)="undoneEvent.emit()">Undone</a>
+    <a class="btn btn-primary btn-danger" *ngIf="todo.done" (click)="deleteEvent.emit()">Delete</a>
+  </div>
+</div>

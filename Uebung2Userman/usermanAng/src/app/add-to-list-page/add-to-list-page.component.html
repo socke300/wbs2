@@ -1,0 +1,31 @@
+<form id="add-user-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="add-user-first-name">First name</span>
+    </div>
+      <input type="text" class="form-control" placeholder="First name" aria-label="First name"
+           aria-describedby="add-user-first-name" id="add-first-name-input" formControlName="firstName">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="add-user-last-name">Last name</span>
+    </div>
+    <input type="text" class="form-control" placeholder="Last name" aria-label="Last name"
+           aria-describedby="add-user-last-name" id="add-last-name-input" formControlName="lastName">
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="add-username">Username</span>
+    </div>
+    <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+           aria-describedby="add-user-name" id="add-username-input" formControlName="userName">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="add-password">Password</span>
+    </div>
+    <input type="password" class="form-control" placeholder="Password" aria-label="Password"
+           aria-describedby="add-password" id="add-password-input" formControlName="password">
+  </div>
+  <input type="text" class="form-control mb-2" placeholder="Beschreibung" aria-label="Description"
+         aria-describedby="add-description" id="add-description-input" formControlName="description">
+  <div class="input-group mb-3">
+    <button type="submit" class="btn btn-info" >Add user</button>
+  </div>
+</form>

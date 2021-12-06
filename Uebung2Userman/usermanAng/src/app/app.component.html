@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" [routerLink]="['']">{{title}}</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="authService.loggedIn"  [routerLink]="['/list']">Userliste</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="authService.loggedIn" [routerLink]="['/addToList']">Hinzufügen</a>
+      </li>
+      <li class="nav-item">
+        <app-login *ngIf="!authService.loggedIn"></app-login>
+      </li>
+      <li class="nav-item">
+        <app-logout *ngIf="authService.loggedIn"></app-logout>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<router-outlet *ngIf="authService.loggedIn" ></router-outlet>

@@ -1,0 +1,9 @@
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{user.firstName}} {{user.lastName}}</h5>
+    <p class="card-text">{{user.description}}</p>
+    <a *ngIf="!user.blocked" class="btn btn-primary btn-light mr-1" (click)="editEvent.emit()">Edit</a>
+    <a *ngIf="!user.blocked" class="btn btn-primary btn-danger ml-1" (click)="deleteEvent.emit()">Delete</a>
+  </div>
+</div>
+

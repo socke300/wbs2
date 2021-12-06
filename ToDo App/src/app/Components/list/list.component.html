@@ -1,0 +1,32 @@
+<div class="container">
+  <h5>{{title}}</h5>
+
+  <div class="row">
+    <div *ngFor="let item of list; let i = index" class="col-auto">
+      <app-todo-card [id]="i" [toDo]="item" [buttonName]="buttonName" (buttonEvent)="addEvent.emit($event)"
+                     (deleteButtonEvent)="addEvent2.emit($event)" [showDeleteButton]="showDeleteButton"></app-todo-card>
+    </div>
+
+
+    <!--
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Titel</th>
+          <th scope="col">Date</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of todoList; let i = index">
+          <td>{{i}}</td>
+          <td>{{item.title}}</td>
+          <td>{{item.date}}</td>
+          <td class="text-right">
+            <button type="button" class="btn btn-secondary" (click)="done(i)">Done</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>-->
+  </div>

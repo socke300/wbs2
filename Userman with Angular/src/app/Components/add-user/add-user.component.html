@@ -1,0 +1,45 @@
+<div class="container" id="content">
+  <div class="row">
+    <div class="col">
+      <form id="add-user-form">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="add-user-first-name">First name</span>
+          </div>
+          <input [(ngModel)]="user.firstName" aria-describedby="add-user-first-name" aria-label="First name"
+                 class="form-control"
+                 name="first" placeholder="First name" type="text">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="add-user-last-name">Last name</span>
+          </div>
+          <input [(ngModel)]="user.lastName" aria-describedby="add-user-last-name" aria-label="Last name"
+                 class="form-control"
+                 name="first" placeholder="Last name" type="text">
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="add-username">Username</span>
+          </div>
+          <input [(ngModel)]="user.username" aria-describedby="add-user-name" aria-label="Username" class="form-control"
+                 name="first" placeholder="Username" type="text">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="add-password">Password</span>
+          </div>
+          <input [(ngModel)]="password" aria-describedby="add-password" aria-label="Password" class="form-control"
+                 name="first" placeholder="Password" type="password">
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Description</span>
+          </div>
+          <input [(ngModel)]="description" aria-describedby="add-description" aria-label="Description"
+                 class="form-control"
+                 name="first" placeholder="Description" type="text">
+        </div>
+        <div class="input-group mb-3">
+          <button (click)="addUser()" class="btn btn-info" type="submit">Add user</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -28,7 +28,7 @@
     "@types/node": "^12.11.1"
   },
   "scripts": {
-    "apidoc": "apidoc -i src/ -o apidoc/",
+    "apidoc": "apidoc -i src -o apidoc/",
     "run": "node src/server.js"
   }
 }

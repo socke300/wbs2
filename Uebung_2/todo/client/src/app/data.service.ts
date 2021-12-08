@@ -28,6 +28,7 @@ export class DataService {
       });
     }).catch((error) => {
       console.log('Window closed: ' + error);
+      this.location.go('');
     })
   }
 

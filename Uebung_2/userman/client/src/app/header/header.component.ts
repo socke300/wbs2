@@ -11,8 +11,8 @@ import {DataService} from "../data.service";
 export class HeaderComponent implements OnInit {
   faComment = faComment
   loggedIn: any = undefined;
-  username;
-  password;
+  username: string;
+  password: string;
   @Input() logoutRequest: boolean = false;
   @Output() loggedInEvent: EventEmitter<boolean>;
   @Output() errorEvent: EventEmitter<HttpErrorResponse>;

@@ -13,6 +13,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {SocketIoModule, SocketIoConfig} from "ngx-socket-io";
 import { CreateUserComponent } from './create-user/create-user.component';
 import { AlertComponent } from './alert/alert.component';
+import { ListPageComponent } from './list-page/list-page.component';
 
 const config: SocketIoConfig = {
   url: 'http://localhost:8080',
@@ -26,7 +27,8 @@ const config: SocketIoConfig = {
     MainComponent,
     HeaderComponent,
     CreateUserComponent,
-    AlertComponent
+    AlertComponent,
+    ListPageComponent
   ],
   imports: [
     BrowserModule,

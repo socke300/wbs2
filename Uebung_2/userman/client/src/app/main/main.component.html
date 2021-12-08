@@ -5,19 +5,14 @@
 <body>
 <p>{{error}}</p>
 <div *ngIf="loggedIn" class="container-fluid">
-  <div *ngIf="page === 0">
-    <div class="row">
-      <div class="col-9">
-        <app-userlist [list]="list" (editUserEvent)="editUser($event, modalData)" (removeUserEvent)="removeUser($event)"
-                      (newUserEvent)="openNewUserModal(modalDataNew)"></app-userlist>
-      </div>
-      <div class="col-3">
-        <app-create-user (newUser)="addUser($event)"></app-create-user>
-      </div>
+  <div class="row">
+    <div class="col-9">
+      <app-userlist [list]="list" (editUserEvent)="editUser($event, modalData)" (removeUserEvent)="removeUser($event)"
+                    (newUserEvent)="openNewUserModal(modalDataNew)"></app-userlist>
     </div>
-  </div>
-  <div *ngIf="page === 1">
-    <app-create-user (newUser)="addUser($event)"></app-create-user>
+    <div class="col-3">
+      <app-create-user (newUser)="addUser($event)"></app-create-user>
+    </div>
   </div>
 </div>
 <ng-template #modalData let-modal>
@@ -28,13 +23,12 @@
     </button>
   </div>
   <div class="modal-body">
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text">First and last name</span>
-      </div>
+    <div class="form-group">
       <input type="hidden" aria-hidden="true" id="edit-id-input">
-      <input type="text" aria-label="First name" [(ngModel)]="editedUser.firstName">
-      <input type="text" aria-label="Last name" [(ngModel)]="editedUser.lastName">
+      <label class="form-label">Firstname</label>
+      <input class="form-control" type="text" aria-label="First name" [(ngModel)]="editedUser.firstName">
+      <label class="form-label">Lastname</label>
+      <input class="form-control" type="text" aria-label="Last name" [(ngModel)]="editedUser.lastName">
     </div>
   </div>
   <div class="modal-footer">

@@ -45,8 +45,9 @@ io.on('connection', (socket => {
     // Handle connection and disconnection
     console.log('[' + new Date() + '] Made socket connection with: ', socket.id);
     socket.on('disconnect', function (user){
+        console.log('[' + new Date() + '] Disconnect socket connection with: ', socket.id);
         for(let entry of writeProtectUsers) {
-            if (entry.user === user){
+            if (entry.user === socket.id){
                 writeProtectUsers.splice(writeProtectUsers.indexOf(entry),1);
                 io.sockets.emit('unblock');
             }

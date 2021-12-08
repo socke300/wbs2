@@ -124,8 +124,8 @@ router.get('/todolist', function (req: Request, res: Response) {
 });
 
 
-router.use('/', express.static(`${__dirname}/../todo/dist/todo`));
-router.use('/*', express.static(`${__dirname}/../todo/dist/todo`));
+router.use('/', express.static(`${__dirname}/../client/dist/todo`));
+router.use('/*', express.static(`${__dirname}/../client/dist/todo`));
 
 router.listen(8080, 'localhost', function () {
   console.log('');

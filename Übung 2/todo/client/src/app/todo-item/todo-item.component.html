@@ -1,0 +1,13 @@
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{todo?.title}}</h5>
+    <p class="card-text">{{todo?.date | date:'longDate'}}</p>
+    <div *ngIf="!todo?.done">
+    <a href="#" class="btn btn-secondary" (click)="done.emit()">Done</a>
+    </div>
+    <div *ngIf="todo?.done">
+      <a href="#" class="btn btn-secondary" (click)="done.emit()">Undo</a>
+      <a href="#" class="btn btn-danger" (click)="delete.emit()">Delete</a>
+    </div>
+  </div>
+</div>

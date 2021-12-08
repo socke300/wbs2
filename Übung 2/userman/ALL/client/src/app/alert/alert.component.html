@@ -1,0 +1,6 @@
+<div class="alert alert-primary alert-dismissible align-middle" role="alert" *ngFor="let alert of alerts">
+  {{alert}}
+  <button type="button" class="btn float-end align-middle" data-dismiss="alert" aria-label="Close" (click)="alertService.removeAlert(alert)">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>

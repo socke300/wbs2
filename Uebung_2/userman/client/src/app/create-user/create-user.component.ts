@@ -1,4 +1,5 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {DataService} from "../data.service";
 
 @Component({
   selector: 'app-create-user',
@@ -7,16 +8,17 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 })
 export class CreateUserComponent implements OnInit {
   user: any = {};
-  @Output() newUser: EventEmitter<any>;
-  constructor() {
-    this.newUser = new EventEmitter<any>();
+  constructor(private dataService: DataService) {
   }
 
   ngOnInit(): void {
   }
 
   saveUser(){
-    this.newUser.emit(this.user);
+    if (this.user.username.trim().length > 0){
+      this.dataService.addUser(this.user);
+      this.clearInput()
+    }
   }
 
   clearInput(){

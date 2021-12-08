@@ -56,20 +56,25 @@ io.on('connection', (socket => {
 
     //Handle socket events
     socket.on('block', function (data){
+        console.log('[' + new Date() + '] Got socket event from + ' + socket.id + ': block');
         writeProtectUsers.push({subject: data, user: socket.id});
         io.sockets.emit('block');
     });
     socket.on('unblock', function (data){
+        console.log('[' + new Date() + '] Got socket event from + ' + socket.id + ': unblock');
         writeProtectUsers.splice(writeProtectUsers.indexOf({subject: data, user: socket.id}), 1);
         io.sockets.emit('unblock');
     })
     socket.on('add', function (data){
+        console.log('[' + new Date() + '] Got socket event from + ' + socket.id + ': add', data);
         io.sockets.emit('add', data);
     })
     socket.on('delete', function (data){
+        console.log('[' + new Date() + '] Got socket event from + ' + socket.id + ': delete', data);
         io.sockets.emit('delete', data);
     })
     socket.on('edit', function (data){
+        console.log('[' + new Date() + '] Got socket event from + ' + socket.id + ': edit', data);
         io.sockets.emit('edit', data);
     })
 }))

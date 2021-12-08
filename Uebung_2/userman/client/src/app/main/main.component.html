@@ -1,70 +1,10 @@
-<header>
-  <app-header (loggedInEvent)="handleLogin($event)" [logoutRequest]="logoutRequest"
-              (errorEvent)="processErrorEvent($event)" (pageSwapEvent)="page = $event"></app-header>
-</header>
-<body>
-<p>{{error}}</p>
-<div *ngIf="loggedIn" class="container-fluid">
+<div class="container-fluid">
   <div class="row">
     <div class="col-9">
-      <app-userlist [list]="list" (editUserEvent)="editUser($event, modalData)" (removeUserEvent)="removeUser($event)"
-                    (newUserEvent)="openNewUserModal(modalDataNew)"></app-userlist>
+      <app-userlist></app-userlist>
     </div>
     <div class="col-3">
-      <app-create-user (newUser)="addUser($event)"></app-create-user>
+      <app-create-user></app-create-user>
     </div>
   </div>
 </div>
-<ng-template #modalData let-modal>
-  <div class="modal-header">
-    <h5 class="modal-title" id="edit-user-modal-title">Edit user: </h5>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <div class="form-group">
-      <input type="hidden" aria-hidden="true" id="edit-id-input">
-      <label class="form-label">Firstname</label>
-      <input class="form-control" type="text" aria-label="First name" [(ngModel)]="editedUser.firstName">
-      <label class="form-label">Lastname</label>
-      <input class="form-control" type="text" aria-label="Last name" [(ngModel)]="editedUser.lastName">
-    </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modal.close('Close click')">Close
-    </button>
-    <button type="submit" class="btn btn-info" (click)="closeModalAndSaveUser(modal)">Save changes
-    </button>
-  </div>
-</ng-template>
-<ng-template #modalDataNew let-modal>
-  <div class="modal-header">
-    <h5 class="modal-title">Edit user: </h5>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text">First and last name</span>
-      </div>
-      <input type="hidden" aria-hidden="true">
-      <input type="text" aria-label="First name" [(ngModel)]="editedUser.firstName">
-      <input type="text" aria-label="Last name" [(ngModel)]="editedUser.lastName">
-    </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modal.close('Close click')">Close
-    </button>
-    <button type="submit" class="btn btn-info" (click)="saveUser(editedUser); modal.close('Save click')">Save changes
-    </button>
-  </div>
-</ng-template>
-
-</body>
-
-<footer>
-  <app-alert></app-alert>
-</footer>

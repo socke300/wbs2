@@ -18,11 +18,15 @@ export class DataService {
   }
 
   saveUser(user: any) {
-    return firstValueFrom(this.httpClient.put('http://localhost:8080/api/user/' + user.id, user))
+    return firstValueFrom(this.httpClient.put('http://localhost:8080/api/user/' + user.id, user)).then((res) => {
+      this.socket.emit('edit', user.username);
+    })
   }
 
   addUser(user: any) {
-    return firstValueFrom(this.httpClient.post('http://localhost:8080/api/user', user))
+    return firstValueFrom(this.httpClient.post('http://localhost:8080/api/user', user)).then((res) => {
+      this.socket.emit('add', user.username)
+    })
   }
 
   getUser(userID: any) {
@@ -33,23 +37,22 @@ export class DataService {
     return firstValueFrom(this.httpClient.get('http://localhost:8080/api/user/status/' + userID))
   }
 
-  deleteUser(userID: any) {
-    return firstValueFrom(this.httpClient.delete('http://localhost:8080/api/user/' + userID));
+  deleteUser(user: User) {
+    return firstValueFrom(this.httpClient.delete('http://localhost:8080/api/user/' + user.id)).then((res) => {
+      this.socket.emit('delete', user.username);
+    })
   }
 
-  checkLogin() {
-    return firstValueFrom(this.httpClient.get('http://localhost:8080/api/login'))
-  }
-
-  login(username: string, password: string): any {
-    // Check if all required fields are filled in
-      return firstValueFrom(this.httpClient.post('http://localhost:8080/api/login', {
-        username: username,
-        password: password
-      }))
-  }
-  logout() {
-    // Perform ajax request to log out user
-    return firstValueFrom(this.httpClient.post('http://localhost:8080/api/logout', {}))
+  buildUserList(): Promise<{user: User, status: boolean}[]>{
+    return this.getUserList().then((res: any) => {
+      let users = res.userList as User[];
+      let newList: {user: User, status: boolean}[] = [];
+      for(let user of users) {
+        this.getUserStatus(user.id).then((res: any) => {
+          newList.push({user: user, status: res.status})
+        })
+      }
+      return newList;
+    })
   }
 }

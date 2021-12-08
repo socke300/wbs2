@@ -25,25 +25,7 @@ export class MainComponent implements OnInit {
   // @ts-ignore
   editedUser: User;
 
-  constructor(private location: Location, private dataService: DataService, public modalService: NgbModal, private socket: Socket, private route: ActivatedRoute, private alertService: AlertService) {
-    socket.on('add', (username: any) => {
-      this.alertService.addAlert('The following user has been created: ' + username);
-      this.getUserList()
-    })
-    socket.on('delete', (username: any) => {
-      this.alertService.addAlert('The following user has been deleted: ' + username);
-      this.getUserList()
-    })
-    socket.on('edit', (username: any) => {
-      this.alertService.addAlert('The following user was edited: ' + username);
-      this.getUserList();
-    })
-    socket.on('block', () => {
-      this.getUserList();
-    })
-    socket.on('unblock', () => {
-      this.getUserList();
-    })
+  constructor(private location: Location, private dataService: DataService, public modalService: NgbModal, private socket: Socket, private route: ActivatedRoute) {
     route.params.subscribe(params => {
       if (params['id']) {
         dataService.getUser(params['id']).then((res: any) => {
@@ -53,14 +35,7 @@ export class MainComponent implements OnInit {
     });
   }
 
-  addUser(newUser: any){
-    this.dataService.addUser(newUser).then((res)=> {
-      this.socket.emit('add', newUser.username);
-    });
-  }
-
   editUser(user: User, modalData: any){
-    //ToDo: Open Modal also if accessed via URL
     this.location.go('/user/' + user.id);
     this.editedUser = {...user};
     this.socket.emit('block', user.id);
@@ -83,15 +58,8 @@ export class MainComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
-  removeUser(user: User){
-    if(confirm('Wollen Sie wirklich den Nutzer "' + user.username + '" entfernen?')) {
-      this.dataService.deleteUser(user.id).then((res)=> {
-        this.socket.emit('delete', user.username);
-      })
-    }
-  }
+
   ngOnInit(): void {
-    this.getUserList()
   }
   processErrorEvent(err: HttpErrorResponse){
     if (err.status === 401){
@@ -105,30 +73,17 @@ export class MainComponent implements OnInit {
   handleLogin(loggedIn: any){
     this.loggedIn = loggedIn;
     if (loggedIn) {
-      this.getUserList();
       this.logoutRequest = false;
     }
   }
   saveUser(user: any){
     this.dataService.saveUser(user).then((res) => {
-      this.socket.emit('edit', user.username)
     });
   }
   openNewUserModal(modalDataNew: any){
     this.modalService.open(modalDataNew, {ariaLabelledBy: 'modal-basic-title'})
   }
-  getUserList(){
-    this.dataService.getUserList().then((res: any) => {
-      let users = res.userList as User[];
-      let newList: {user: User, status: boolean}[] = [];
-      for(let user of users) {
-        this.dataService.getUserStatus(user.id).then((res: any) => {
-          newList.push({user: user, status: res.status})
-        })
-      }
-      this.list = newList;
-    })
-  }
+
   closeModalAndSaveUser(modal: any){
     this.dataService.saveUser(this.editedUser).then((res)=> {
       this.socket.emit('edit', this.editedUser.username)

@@ -53,12 +53,14 @@ export default class AddUser extends React.Component<any,any> {
                                 <input onChange={this.changeUsername} className="form-control" placeholder="Username"
                                        type="text"/>
 
+
+
+                            </div>
+                            <div className="input-group mb-3">
                                 <div className="input-group-prepend">
                                     <span className="input-group-text">Description</span>
                                 </div>
-                                <input onChange={this.changeDescription} className="form-control" placeholder="Description"
-                                       type="text"/>
-
+                                <textarea onChange={this.changeDescription} className="form-control" placeholder="Description"/>
                             </div>
                             <div className="input-group mb-3">
                                 <button className="btn btn-info" type="submit">Add user</button>

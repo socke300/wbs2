@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "delete-user-modal.component.js",
+  "sourceRoot": "",
+  "sources": [
+    "../../../../../src/app/Components/delete-user-modal/delete-user-modal.component.ts"
+  ],
+  "names": [],
+  "mappings": ";AAAA,OAAO,EAAC,SAAS,EAAgB,MAAM,eAAe,CAAC;AAQvD,IAAa,wBAAwB,GAArC,MAAa,wBAAwB;IAInC,YAAmB,WAA2B;QAA3B,gBAAW,GAAX,WAAW,CAAgB;QAFvC,aAAQ,GAAW,EAAE,CAAC;IAG7B,CAAC;IAED,QAAQ;IACR,CAAC;CACF,CAAA;AATY,wBAAwB;IALpC,SAAS,CAAC;QACT,QAAQ,EAAE,uBAAuB;QACjC,WAAW,EAAE,oCAAoC;QACjD,SAAS,EAAE,CAAC,mCAAmC,CAAC;KACjD,CAAC;GACW,wBAAwB,CASpC;SATY,wBAAwB"
+}

@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "Rights.js",
+  "sourceRoot": "",
+  "sources": [
+    "../../../../src/app/Model/Rights.ts"
+  ],
+  "names": [],
+  "mappings": "AAAA,MAAM,CAAN,IAAY,MAIX;AAJD,WAAY,MAAM;IAChB,mCAAI,CAAA;IACJ,qCAAK,CAAA;IACL,+CAAU,CAAA;AACZ,CAAC,EAJW,MAAM,KAAN,MAAM,QAIjB"
+}

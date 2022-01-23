@@ -1,0 +1,18 @@
+<div class="modal-header">
+  <h5 class="modal-title">User "{{username}}" editieren</h5>
+  <button (click)="activeModal.dismiss()" aria-label="Close" class="close" data-dismiss="modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="form-group">
+    <label>Firstname</label>
+    <input [(ngModel)]="firstname" class="form-control" type="text">
+    <label>Lastname</label>
+    <input [(ngModel)]="lastname" class="form-control" type="text">
+  </div>
+</div>
+<div class="modal-footer">
+  <button (click)="save()" class="btn btn-primary" type="button">Save changes</button>
+  <button (click)="activeModal.dismiss()" class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+</div>

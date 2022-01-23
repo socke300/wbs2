@@ -1,0 +1,7 @@
+<form (ngSubmit)="authService.login(username, password)" class="form-inline">
+  <div class="form-group">
+    <input [(ngModel)]="username" class="form-control mr-2" name="username" placeholder="Username" type="email">
+    <input [(ngModel)]="password" class="form-control mr-2" name="password" placeholder="Password" type="password">
+  </div>
+  <button class="btn btn-primary" type="submit">Submit</button>
+</form>

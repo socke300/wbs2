@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "alert.component.js",
+  "sourceRoot": "",
+  "sources": [
+    "../../../../../src/app/Components/alert/alert.component.ts"
+  ],
+  "names": [],
+  "mappings": ";AAAA,OAAO,EAAC,SAAS,EAAS,MAAM,eAAe,CAAC;AAQhD,IAAa,cAAc,GAA3B,MAAa,cAAc;IAIzB,YAAmB,YAA0B;QAA1B,iBAAY,GAAZ,YAAY,CAAc;QAF7C,SAAI,GAAW,EAAE,CAAC;IAGlB,CAAC;IAED,QAAQ;IACR,CAAC;CAEF,CAAA;AAVY,cAAc;IAL1B,SAAS,CAAC;QACT,QAAQ,EAAE,WAAW;QACrB,WAAW,EAAE,wBAAwB;QACrC,SAAS,EAAE,CAAC,uBAAuB,CAAC;KACrC,CAAC;GACW,cAAc,CAU1B;SAVY,cAAc"
+}

@@ -1,0 +1,8 @@
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{toDo.title}}</h5>
+    <p class="card-text">{{toDo.date | dateFormatter}}</p>
+    <button class="btn btn-info" (click)="buttonEvent.emit(id)">{{buttonName}}</button>
+    <button class="btn btn-danger" *ngIf="showDeleteButton" (click)="deleteButtonEvent.emit(id)">Delete</button>
+  </div>
+</div>

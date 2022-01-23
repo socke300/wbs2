@@ -40,7 +40,7 @@ export class UserService {
   }
 
   updateUser(user: User): Promise<void> {
-    return this.http.put(`${this.usersUrl}user/${user.id}`, user, httpOptions).toPromise()
+    return this.http.put(`${this.usersUrl}user/${user._id}`, user, httpOptions).toPromise()
       .then((res: any) => {
         this.userlistChangedEmitter.emit();
         this.alertService.addAlert({type: 'success', message: res.message});

@@ -15,7 +15,6 @@ import {MongoService} from "../service/mongo.service";
 import {User} from "../model/user";
 import {Rights} from "../model/rights";
 import {RolesGuard} from "../service/rolesGuard.service";
-import {ObjectId} from "mongodb";
 
 @Controller('user')
 @UseGuards(RolesGuard)
@@ -32,7 +31,7 @@ export class UserController {
 
             for (const row of result) {
                 userList.push(new User(
-                    row._id,
+                    row._id.toString(),
                     row.username,
                     row.firstName,
                     row.lastName,
@@ -68,7 +67,7 @@ export class UserController {
 
     @Put(":id")
     @SetMetadata('role', [Rights.Admin])
-    async putUser(@Body() user: User, @Param("id") id: ObjectId) {
+    async putUser(@Body() user: User, @Param("id") id: string) {
         if (user.firstName && user.lastName) {
             try {
                 const result = await this.sqlService.changeUser(user, id);
@@ -88,7 +87,7 @@ export class UserController {
 
     @Delete(":id")
     @SetMetadata('role', [Rights.Admin])
-    async deleteUser(@Param("id") id: ObjectId) {
+    async deleteUser(@Param("id") id: string) {
         try {
             const result = await this.sqlService.deleteUser(id);
             if (result.deletedCount === 1) {

@@ -15,7 +15,6 @@ export class AuthController {
 
         try {
             const result = await this.sqlService.checkUserExist(username, password);
-            console.log(result[0].firstname)
             if (result.length === 1) {
                 session.user = new User(result[0].id, result[0].username, result[0].firstName, result[0].lastName, new Date(result[0].time), result[0].rights);
                 return {message: 'Successfully logged in'};

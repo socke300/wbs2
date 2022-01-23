@@ -9,7 +9,7 @@ import {User} from '../../model/user';
 export class UserDetailComponent implements OnInit {
 
   @Input() user: User;
-  @Output() deleteEvent: EventEmitter<number> = new EventEmitter();
+  @Output() deleteEvent: EventEmitter<string> = new EventEmitter();
   @Output() updateEvent: EventEmitter<User> = new EventEmitter();
 
   constructor() { }
@@ -18,7 +18,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   delete(): void {
-    this.deleteEvent.emit(this.user.id);
+    this.deleteEvent.emit(this.user._id);
   }
 
   update(): void {

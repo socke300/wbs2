@@ -31,7 +31,7 @@ export class UsersComponent implements OnInit {
       this.users = users;
       this.route.params.subscribe((params: any) => {
         if (params.id != null) {
-          const user = this.users.find((el) => el.id === params.id);
+          const user = this.users.find((el) => el._id === params.id);
 
           const modalRef = this.modalService.open(UpdateUserComponent);
           modalRef.componentInstance.user = Object.assign({}, user);
@@ -51,6 +51,6 @@ export class UsersComponent implements OnInit {
   showDetail(user: User): void {
     const modalRef = this.modalService.open(UpdateUserComponent);
     modalRef.componentInstance.user = Object.assign({}, user);
-    this.location.go('/editpage/user/' + user.id);
+    this.location.go('/editpage/user/' + user._id);
   }
 }

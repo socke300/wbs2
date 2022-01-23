@@ -19,7 +19,7 @@ export class AddUserComponent {
 
   addUser(): void {
     const user: User = {
-      id: null,
+      _id: null,
       firstName: this.firstname,
       lastName: this.lastname,
       username: this.username,

@@ -14,7 +14,7 @@ export class MongoService {
             this.collection = client.db("userman").collection<User>("users");
             if (err) console.error(err);
             else console.log('Successfully connected to MongoDB');
-            //this.collection.insertOne(new User(1, "admin", "admin", "admin", new Date(), 2))
+            //this.collection.insertOne(new User(new ObjectId(), "admin", "admin", "admin", new Date(), 2))
         });
     }
 
@@ -36,19 +36,19 @@ export class MongoService {
         return await this.collection.insertOne(user);
     }
 
-    public async changeUser(user: User, id: ObjectId): Promise<any> {
+    public async changeUser(user: User, id: string): Promise<any> {
         const query: Object = {
-            "firstName": user.firstName,
-            "lastName" : user.lastName,
-            "password" : user.password
+            $set: {
+                "firstName": user.firstName,
+                "lastName": user.lastName,
+                "password": user.password
+            }
         }
+
         return await this.collection.updateOne({"_id": new ObjectId(id)}, query);
     }
 
-    public async deleteUser(id: ObjectId): Promise<any> {
-        const query: Object = {
-            "_id" : new ObjectId(id)
-        }
-        return await this.collection.deleteOne(query);
+    public async deleteUser(id: string): Promise<any> {
+        return await this.collection.deleteOne({"_id": new ObjectId(id)});
     }
 }

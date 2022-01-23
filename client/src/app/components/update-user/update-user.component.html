@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{user.firstName}} {{user.lastName}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click'); this.location.go('/userspage')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="form-group">
+            <label for="vornameInput">Vorname</label>
+            <input type="text" class="form-control" id="vornameInput" [(ngModel)]="user.firstName" name="vorname">
+        </div>
+        <div class="form-group">
+            <label for="nachnameInput">Nachname</label>
+            <input type="text" class="form-control" id="nachnameInput" [(ngModel)]="user.lastName" name="nachname">
+        </div>
+        <div class="form-group">
+            <label for="usernameInput">Benutzername</label>
+            <input type="text" class="form-control" id="usernameInput" [(ngModel)]="user.username" name="username" disabled>
+        </div>
+        <div class="form-group">
+            <label for="passwordInput">Passwort</label>
+            <input type="password" class="form-control" id="passwordInput" [(ngModel)]="user.password" name="password">
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click'); this.location.go('/userspage')">Schließen</button>
+    <button type="button" class="btn btn-success" (click)="save()">Speichern</button>
+</div>

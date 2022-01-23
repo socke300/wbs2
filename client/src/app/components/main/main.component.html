@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark mb-5">
+    <span class="navbar-brand mb-0 h1">Userman</span>
+
+
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/userspage">Liste</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/addpage">Hinzufügen</a>
+        </li>
+    </ul>
+
+
+
+    <form *ngIf="!this.auth.isLoggedIn()" class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Benutzername" [(ngModel)]="username" name="username" aria-label="Benutzername">
+        <input class="form-control mr-sm-2" type="password" placeholder="Passwort" [(ngModel)]="password" name="password" aria-label="Passwort">
+        <button class="btn btn-outline-success my-2 my-sm-0" (click)="this.auth.logIn(this.username, this.password)" type="submit">Anmelden</button>
+    </form>
+    <button *ngIf="this.auth.isLoggedIn()" class="btn btn-outline-success" (click)="this.auth.logOut()" type="submit">Abmelden</button>
+</nav>
+<div class="container">
+    <h1>Usermanager</h1>
+    <app-alerts></app-alerts>
+
+    <router-outlet></router-outlet>
+</div>
+

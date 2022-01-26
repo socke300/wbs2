@@ -1,0 +1,25 @@
+<div *ngIf="!user" class="container-fluid align-items-center justify-content-center text-center p-2">
+  <button class="btn btn-outline-primary" (click)="testUser1()">Test User 1</button>
+  <button class="btn-outline-primary btn" (click)="testUser2()">Test User 2</button>
+</div>
+<form (ngSubmit)="login()" *ngIf="!user">
+  <div class="container-fluid align-items-center justify-content-center text-center p-2">
+    <div class="p-2" style="{width: 100%}">
+    <span class="p-input-icon-right">
+          <input class="form-control" type="text" placeholder="Username" [(ngModel)]="email" name="E-Mail">
+    </span>
+    </div>
+    <div class="p-2" style="{width: 100%}">
+      <input class="form-control" placeholder="Password" [(ngModel)]="password" name="password">
+    </div>
+    <div class="p-2" style="{width: 100%}">
+      <button type="submit" class="btn btn-outline-primary">Login</button>
+      <button type="button" class="btn-outline-primary btn" (click)="loginWithGoogle()">Sign in with Google</button>
+    </div>
+  </div>
+</form>
+<div *ngIf="user" class="align-items-center justify-content-center text-center m-3">
+  <button type="button" class="btn-outline-primary btn" (click)="logout()">Logout</button>
+  <br>
+  <app-list [user]="user"></app-list>
+</div>

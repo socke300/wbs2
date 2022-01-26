@@ -1,0 +1,14 @@
+<app-add (add)="add($event)"></app-add>
+<div class="container-fluid align-items-center justify-content-center text-center">
+  <div *ngFor="let post of posts; index as i">
+    <div class="row card m-4" *ngIf="i < 15">
+      <div class="card-header">
+        <p class="small">
+          On the {{post.time | date:'dd.MM.yyyy hh:mm:ss' }} {{post.user}} posted:
+        </p>
+        <span>{{post.text}}</span>
+        <a (click)="remove(post)" *ngIf="user?.email === post.user">  &times;</a>
+      </div>
+    </div>
+  </div>
+</div>

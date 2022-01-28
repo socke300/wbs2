@@ -1,0 +1,9 @@
+
+<app-login *ngIf="!userService.user"></app-login>
+
+<div *ngIf="userService.user">
+  <app-logged-in></app-logged-in>
+  <app-add-post></app-add-post>
+  <app-post-list></app-post-list>
+</div>
+

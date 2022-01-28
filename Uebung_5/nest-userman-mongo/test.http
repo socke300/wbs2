@@ -1,0 +1,28 @@
+###
+POST http://localhost:3000/session/login
+Content-Type: application/json
+
+{
+  "username": "1",
+  "password": "1"
+}
+
+###
+GET http://localhost:3000/session/check
+Cookie: test=s%3AbXRhCyr9O3XDy-zK86qaCNdsMYBnLP8Y.KboqivjzBfaq9p04sscGDNVf8lKZyiSbM5dRf6Rwocg
+
+###
+POST http://localhost:3000/session/logout
+
+###
+GET http://localhost:3000/user
+Cookie: test=s%3AbXRhCyr9O3XDy-zK86qaCNdsMYBnLP8Y.KboqivjzBfaq9p04sscGDNVf8lKZyiSbM5dRf6Rwocg
+
+###
+DELETE http://localhost:3000/user/61ec237c08e6df206caa47fc
+Cookie: test=s%3ANWJi3mxxqWoVhQ5jAuigBzKVPpaTH7P0.WMrZerZI7tjagjMOc1Noi3SrYiDIBPQTWFySaRzgSk4
+
+###
+PUT http://localhost:3000/user/61ec2411914358389a5b7376
+Content-Type: application/json
+

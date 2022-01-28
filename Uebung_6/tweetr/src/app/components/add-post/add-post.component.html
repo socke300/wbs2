@@ -1,0 +1,7 @@
+<div class="container">
+  <div class="d-flex justify-content-center pt-3 pb-2">
+    <textarea #message placeholder="Unterhalte dich mit den Anderen!" class="form-control addtxt"></textarea>
+    <button (click)="addPost(message.value); message.value = ''" class="btn btn-dark ml-1">Abschicken</button>
+  </div>
+</div>
+

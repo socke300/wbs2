@@ -58,7 +58,7 @@ export class UserController {
                 return {message: 'Successfully created new user',};
 
             } catch (err) {
-                throw new HttpException({message: "An error occured while creating the new user: " + err}, HttpStatus.BAD_REQUEST);
+                throw new HttpException({message: "An error occured while creating the new user: " + err}, HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } else {
             throw new HttpException({message: "Not all mandatory fields are filled in."}, HttpStatus.BAD_REQUEST);

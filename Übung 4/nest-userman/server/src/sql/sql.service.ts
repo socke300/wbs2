@@ -47,8 +47,8 @@ export class SqlService {
         }
     }
     async updateUser(user: User){
-        const sql: string = 'UPDATE userlist SET username=?, firstName=?, lastName=? WHERE id=?;';
-        let userQuery = await this.query(sql, [user.username, user.firstName, user.lastName, user.id]);
+        const sql: string = 'UPDATE userlist SET username=?, firstName=?, lastName=?, password=? WHERE id=?;';
+        let userQuery = await this.query(sql, [user.username, user.firstName, user.lastName,cryptoJS.SHA512(user.password).toString(), user.id]);
         if (userQuery.affectedRows === 1){
             return {message: "Successfully updated user."};
         }

@@ -1,9 +1,10 @@
 import {
-    BadRequestException,
     Body,
     Controller,
     Delete,
-    Get, HttpException, HttpStatus,
+    Get,
+    HttpException,
+    HttpStatus,
     Param,
     Post,
     Put,
@@ -25,49 +26,73 @@ export class UserController {
 
     @Get()
     @SetMetadata('role', Rights.User)
-    getUsers(@Session() session: ISession){
-        return this.sqlService.getAllUsers();
+    async getUsers(@Session() session: ISession) {
+        try {
+            const userlist = await this.sqlService.getAllUsers();
+
+            for (const userlistElement of userlist) {
+                delete userlistElement.password;
+            }
+
+            return userlist;
+        } catch (e) {
+            throw new HttpException({message: 'Database request failed.'}, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
     @Post()
     @SetMetadata('role', Rights.Admin)
-    addUser(@Body() user: User){
+    addUser(@Body() user: User) {
         if (!user.username) {
-            return new HttpException({message: 'Please enter username.'}, HttpStatus.BAD_REQUEST);
+            throw new HttpException({message: 'Please enter username.'}, HttpStatus.BAD_REQUEST);
         }
         if (!user.password) {
-            return new HttpException({message: 'Please enter password.'}, HttpStatus.BAD_REQUEST);
+            throw new HttpException({message: 'Please enter password.'}, HttpStatus.BAD_REQUEST);
         }
         if (!user.firstName) {
-            return new HttpException({message: 'Please enter first name.'}, HttpStatus.BAD_REQUEST);
+            throw new HttpException({message: 'Please enter first name.'}, HttpStatus.BAD_REQUEST);
         }
         if (!user.lastName) {
-            return new HttpException({message: 'Please enter last name.'}, HttpStatus.BAD_REQUEST);
+            throw new HttpException({message: 'Please enter last name.'}, HttpStatus.BAD_REQUEST);
         }
-        return this.sqlService.addUser(user)
+        try {
+
+            return this.sqlService.addUser(user)
+        } catch (e) {
+            throw new HttpException({message: 'Database request failed.'}, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @Delete(':id')
     @SetMetadata('role', Rights.Admin)
-    deleteUser(@Param('id') userId: string){
-        return this.sqlService.deleteUser(Number(userId));
+    deleteUser(@Param('id') userId: string) {
+        try {
+            return this.sqlService.deleteUser(Number(userId));
+        } catch (e) {
+            throw new HttpException({message: 'Database request failed.'}, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @Put(':id')
     @SetMetadata('role', Rights.Admin)
-    updateUser(@Param('id') userId: string, @Body() user: User){
+    updateUser(@Param('id') userId: string, @Body() user: User) {
         if (!user.username) {
-            return new HttpException({message: 'Please enter username.'}, HttpStatus.BAD_REQUEST);
+            throw new HttpException({message: 'Please enter username.'}, HttpStatus.BAD_REQUEST);
         }
         if (!user.password) {
-            return new HttpException({message: 'Please enter password.'}, HttpStatus.BAD_REQUEST);
+            throw new HttpException({message: 'Please enter password.'}, HttpStatus.BAD_REQUEST);
         }
         if (!user.firstName) {
-            return new HttpException({message: 'Please enter first name.'}, HttpStatus.BAD_REQUEST);
+            throw new HttpException({message: 'Please enter first name.'}, HttpStatus.BAD_REQUEST);
         }
         if (!user.lastName) {
-            return new HttpException({message: 'Please enter last name.'}, HttpStatus.BAD_REQUEST);
+            throw new HttpException({message: 'Please enter last name.'}, HttpStatus.BAD_REQUEST);
         }
-        return this.sqlService.updateUser(user);
+        try {
+            return this.sqlService.updateUser(user);
+        } catch (e) {
+            throw new HttpException({message: 'Database request failed.'}, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

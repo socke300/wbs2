@@ -1,0 +1,10 @@
+<header>
+  <app-header (errorEvent)="processErrorEvent($event)"></app-header>
+</header>
+<body>
+<p>{{error}}</p>
+<router-outlet *ngIf="authService.loggedIn"></router-outlet>
+</body>
+<footer>
+  <app-alert></app-alert>
+</footer>

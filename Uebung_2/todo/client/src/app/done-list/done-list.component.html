@@ -1,0 +1,4 @@
+<h5>Done</h5>
+<div *ngFor="let item of dataService.todoList; let i = index" class="m-2">
+  <app-todo-item *ngIf="item.done" [todo]="item" (done)="dataService.done(item, i)" (delete)="dataService.delete(item, i)"></app-todo-item>
+</div>

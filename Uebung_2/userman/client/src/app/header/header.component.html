@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <div class="row container-fluid">
+      <div class="col-5">
+        <div class="row container-fluid">
+          <div class="col ">
+            <a class="navbar-brand" [routerLink]="['/']">Usermanager</a>
+         </div>
+          <div class="col " *ngIf="authService.loggedIn">
+            <button class="btn text-white" [routerLink]="['/list']">Liste</button>
+          </div>
+          <div class="col " *ngIf="authService.loggedIn">
+            <button class="btn text-white" [routerLink]="['/add']">Hinzufügen</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-3"></div>
+      <div class="col-4">
+        <div class="collapse navbar-collapse float-end" id="navbar-supported-content">
+          <form class="form-inline my-2 my-lg-0" *ngIf="!authService.loggedIn">
+            <div class="input-group">
+              <input type="text" placeholder="Username" class="form-control" [(ngModel)]="username">
+              <input type="password" placeholder="Password" class="form-control" [(ngModel)]="password">
+              <div class="input-group-append">
+                <button class="btn btn-outline-info" (click)="login(username, password)">Login</button>
+              </div>
+            </div>
+          </form>
+          </div>
+          <div class="float-end" *ngIf="authService.loggedIn">
+            <span class="navbar-text pr-3" id="navbar-username"></span>
+            <button class="btn btn-outline-info" type="button" id="logout-button" (click)="logout()">Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</nav>

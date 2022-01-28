@@ -1,0 +1,33 @@
+<table class="table table-striped p-4">
+  <thead class="thead-light">
+  <tr>
+    <th>ID</th>
+    <th>Vorname</th>
+    <th>Nachname</th>
+    <th>Username</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let entry of list">
+    <td>{{entry.user.id}}</td>
+    <td>{{entry.user.firstName}}</td>
+    <td>{{entry.user.lastName}}</td>
+    <td>{{entry.user.username}}</td>
+    <td *ngIf="!entry.status">
+      <button class="btn btn-outline-dark btn-sm edit-user-button mr-4" (click)="modal?.open(entry.user)">
+        <fa-icon [icon]="faPencilAlt" aria-hidden="true"></fa-icon>
+      </button>
+      <button class="btn btn-outline-dark btn-sm delete-user-button" (click)="removeUser(entry.user)">
+        <fa-icon [icon]="faTrash" aria-hidden="true"></fa-icon>
+      </button>
+    </td>
+    <td *ngIf="entry.status">
+      <button class="btn btn-outline-dark btn-sm edit-user-button mr-4">
+        <fa-icon [icon]="faLock" aria-hidden="true"></fa-icon>
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<app-edit-user-modal #editModal></app-edit-user-modal>

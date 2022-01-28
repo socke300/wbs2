@@ -10,7 +10,7 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
 })
 export class PostItemComponent implements OnInit {
 
-  @Input() post: Post  = new Post('', '', '', '');
+  @Input() post!: Post;
 
   constructor(public userService: UserServiceService, public afs:AngularFirestore) { }
 

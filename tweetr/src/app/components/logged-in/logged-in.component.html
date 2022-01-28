@@ -1,0 +1,9 @@
+<div *ngIf="userService.user" class="container" style="display: flex">
+  <div class="row">
+    <div class="col">
+      <h3>Hallo {{this.userService.user.email}}!</h3>
+      <button class="btn  mx-auto btn-outline-secondary" (click)="userService.logout()"> Logout </button>
+    </div>
+  </div>
+</div>
+

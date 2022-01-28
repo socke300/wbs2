@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "tweetr-c6955": {
+      "hosting": {
+        "tweetr": [
+          "tweetr-c6955"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "tweetr-c6955"
+  }
+}

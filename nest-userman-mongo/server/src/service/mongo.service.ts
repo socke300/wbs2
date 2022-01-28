@@ -1,6 +1,7 @@
 import {Injectable} from '@nestjs/common';
 import {Collection, MongoClient, ObjectId} from 'mongodb';
 import {User} from "../model/user";
+import * as cryptoJs from "crypto-js";
 
 @Injectable()
 export class MongoService {
@@ -21,7 +22,7 @@ export class MongoService {
     public async checkUserExist(username: string, password: string): Promise<any> {
         let query: Object = {
             username: username,
-            password: password
+            password: cryptoJs.SHA512(password).toString()
         };
         return await this.collection.find(query).toArray();
     }
@@ -33,10 +34,13 @@ export class MongoService {
     public async addUser(user: User): Promise<any> {
         user.creationTime = new Date();
         user.rights = 0;
+        user.password = cryptoJs.SHA512(user.password).toString();
         return await this.collection.insertOne(user);
     }
 
     public async changeUser(user: User, id: string): Promise<any> {
+        user.password = cryptoJs.SHA512(user.password).toString();
+
         const query: Object = {
             $set: {
                 "firstName": user.firstName,

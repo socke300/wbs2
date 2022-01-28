@@ -68,7 +68,7 @@ export class UserController {
     @Put(":id")
     @SetMetadata('role', [Rights.Admin])
     async putUser(@Body() user: User, @Param("id") id: string) {
-        if (user.firstName && user.lastName) {
+        if (user.firstName && user.lastName && user.password) {
             try {
                 const result = await this.sqlService.changeUser(user, id);
 
